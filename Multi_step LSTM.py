@@ -157,7 +157,7 @@ num_epochs = 100
 batch_size = 32
 
 # Data set reading and cutting
-file_path = '/home/lzy/Desktop/Autoformer-main/dataset/power/2018-2020.csv'
+file_path = '/home/lzy/Desktop/dataset/power/2018-2020.csv'
 data = pd.read_csv(file_path)
 data = data["OT"]
 scaler = StandardScaler()
@@ -181,7 +181,7 @@ train_data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=Fal
 test_data_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-save_path = '/home/lzy/Desktop/Autoformer-main/lstm48.pth'
+save_path = '/home/lzy/Desktop/lstm48.pth'
 
 Istrain = 1  # Whether to read the model
 if Istrain == 1:
