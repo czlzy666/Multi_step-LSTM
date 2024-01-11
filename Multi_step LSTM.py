@@ -185,6 +185,7 @@ save_path = '/home/lzy/Desktop/Autoformer-main/lstm48.pth'
 
 Istrain = 1  # Whether to read the model
 if Istrain == 1:
+    # Train a new model
     model = LSTMModel(input_size, hidden_size, output_size, num_layers, num_steps)
     model.to(device)
     criterion = nn.MSELoss().to(device)
@@ -193,10 +194,12 @@ if Istrain == 1:
     epoch_losses = train(model, train_data_loader, criterion, optimizer, scheduler, num_epochs, save_path)
     plot_loss(epoch_losses)
 else:
+    # load existing model
     model = load_model(save_path, LSTMModel, input_size, hidden_size, output_size, num_layers, num_steps)
     model.to(device)
     print("successful load model")
 
+# Predict in test set
 predictions, actuals = predict(model, test_data_loader)
 predictions = scaler.inverse_transform(np.array(predictions).reshape(-1, 1))
 actuals = scaler.inverse_transform(np.array(actuals).reshape(-1, 1))
